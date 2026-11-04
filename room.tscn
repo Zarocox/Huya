@@ -118,7 +118,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n451l")
 }],
-"loop": 0,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -135,7 +135,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_i44yh")
 }],
-"loop": 0,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -152,7 +152,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qfj0j")
 }],
-"loop": 0,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -175,7 +175,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xorjj")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 8.0
 }]
@@ -251,7 +251,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6o5vy")
 }],
-"loop": 0,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -268,7 +268,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ho83x")
 }],
-"loop": 0,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
@@ -291,7 +291,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l46xq")
 }],
-"loop": 1,
+"loop": true,
 "name": &"idle",
 "speed": 8.0
 }]

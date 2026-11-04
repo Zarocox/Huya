@@ -1,8 +1,8 @@
 extends Control
 
-const ENEMY_MAX_HP = 100
-const DAMAGE_PER_HIT = 25
-const MAGE_MAX_HP = 100
+#const ENEMY_MAX_HP = 100
+#const DAMAGE_PER_HIT = 25
+#const MAGE_MAX_HP = 100
 
 var tasks: Array
 var correct_answer: float
@@ -27,8 +27,8 @@ var current_task: Dictionary
 func _ready():
 	answer_input.text_submitted.connect(func(_text): _on_cast_pressed())
 	load_tasks()
-	mage_hp = MAGE_MAX_HP
-	enemy_hp = ENEMY_MAX_HP
+	mage_hp = Globals.MAGE_MAX_HP
+	enemy_hp = Globals.ENEMY_MAX_HP
 	update_health_bar()
 	generate_task()
 	cast_button.pressed.connect(_on_cast_pressed)
@@ -87,7 +87,7 @@ func update_health_bar():
 func hit_enemy():
 	play_once(mage_sprite, "attack")
 	await mage_sprite.animation_finished
-	enemy_hp -= DAMAGE_PER_HIT
+	enemy_hp -= Globals.DAMAGE_PER_HIT
 	play_once(enemy_sprite, "hurt")
 	if enemy_hp <= 0:
 			end_game()
@@ -99,7 +99,7 @@ func hit_enemy():
 func take_hit():
 	cast_button.disabled = true
 	play_once(mage_sprite, "hurt")
-	mage_hp = max(0, mage_hp - DAMAGE_PER_HIT)
+	mage_hp = max(0, mage_hp - Globals.DAMAGE_PER_HIT)
 	update_health_bar()
 	await mage_sprite.animation_finished
 	if mage_hp > 0:
