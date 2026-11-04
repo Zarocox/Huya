@@ -6,6 +6,7 @@ const MAGE_MAX_HP = 100
 ####zxzcxzxcczxzxc
 #zxczxczxc
 #qweqwe
+# 67 67
 # dead inside 228
 var tasks: Array
 var correct_answer: float
