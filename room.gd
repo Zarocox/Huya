@@ -66,17 +66,14 @@ func _on_cast_pressed():
 		answer_input.text = ""
 		await hit_enemy()
 		if enemy_hp > 0:
-			result_label.text = "Разряд прошел! Здоровье врага: %d HP"% enemy_hp
+			result_label.text = "Разряд прошел! Здоровье врага: %d HP"% max(enemy_hp, 0)
 	
 	else:
 		answer_input.text = ""
 		await take_hit()
-		if mage_hp <= 0:
-			result_label.text = "Вы умерли!"
-			end_game()
-		elif mage_hp <= 25:
+		if mage_hp > 0 and mage_hp <= 25:
 			result_label.text = "Неверно! Здоровье мага: %d HP \nОсторожно! Критический запас здоровья!"%mage_hp
-		else:
+		elif mage_hp > 0:
 			result_label.text = "Неверно! Здоровье мага: %d HP" % mage_hp
 
 
@@ -90,10 +87,10 @@ func hit_enemy():
 	enemy_hp -= Globals.DAMAGE_PER_HIT
 	play_once(enemy_sprite, "hurt")
 	if enemy_hp <= 0:
-			end_game()
+		end_game()
 	else:
-			cast_button.disabled = false
-			generate_task()
+		cast_button.disabled = false
+		generate_task()
 	update_health_bar()
 
 func take_hit():
@@ -109,7 +106,7 @@ func take_hit():
 
 func end_game():
 	if enemy_hp <= 0:
-		result_label.text += "\nПобеда! Враг уничтожен!"
+		result_label.text = "Победа! Враг уничтожен!"
 		enemy_sprite.play("death")
 	elif mage_hp <= 0:
 		result_label.text = "Вы умерли!"
