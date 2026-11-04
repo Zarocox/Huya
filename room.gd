@@ -5,7 +5,7 @@ const DAMAGE_PER_HIT = 25
 const MAGE_MAX_HP = 100
 ####zxzcxzxcczxzxc
 #zxczxczxc
-
+#qweqwe
 # dead inside 228
 var tasks: Array
 var correct_answer: float
