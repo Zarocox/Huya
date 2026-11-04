@@ -3,7 +3,7 @@ extends Control
 const ENEMY_MAX_HP = 100
 const DAMAGE_PER_HIT = 25
 const MAGE_MAX_HP = 100
-
+####zxzcxzxcczxzxc
 var tasks: Array
 var correct_answer: float
 var enemy_hp: int
