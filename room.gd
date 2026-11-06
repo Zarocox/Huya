@@ -1,8 +1,5 @@
 extends Control
 
-#const ENEMY_MAX_HP = 100
-#const DAMAGE_PER_HIT = 25
-#const MAGE_MAX_HP = 100
 
 var tasks: Array
 var correct_answer: float
@@ -95,6 +92,8 @@ func hit_enemy():
 
 func take_hit():
 	cast_button.disabled = true
+	play_once(enemy_sprite, "attack")
+	await enemy_sprite.animation_finished
 	play_once(mage_sprite, "hurt")
 	mage_hp = max(0, mage_hp - Globals.DAMAGE_PER_HIT)
 	update_health_bar()
@@ -108,19 +107,28 @@ func end_game():
 	if enemy_hp <= 0:
 		result_label.text = "Победа! Враг уничтожен!"
 		enemy_sprite.play("death")
+		restart_button.text = "Вернуться в Лобби"
 	elif mage_hp <= 0:
 		result_label.text = "Вы умерли!"
 		mage_sprite.play("death")
+		restart_button.text = "Начать заново"
 	set_quest_visible(false)
 	formula_panel.visible = false
 	task_label.text = ""
 	restart_button.visible = true
 
 func _on_restart_pressed():
-	get_tree().reload_current_scene()
+	if enemy_hp <= 0:
+		Globals.completed_rooms.append(Globals.current_room)
+		get_tree().change_scene_to_file("res://Lobby/Lobby.tscn")
+	else:
+		get_tree().reload_current_scene()
 
 func load_tasks():
-	var file = FileAccess.open("res://tasks.json", FileAccess.READ)
+	var path = "res://tasks_%s.json" % Globals.current_room
+	if Globals.current_room == "":
+		path = "res://tasks.json"   # запасной 
+	var file = FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		print("Ошибка в файле tasks.json!")
 		return
